@@ -1,0 +1,6 @@
+@perdidog_HostAddress = http://localhost:5267
+
+GET {{perdidog_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
