@@ -47,14 +47,12 @@ namespace perdidog.Repository
                 return null;
             }
 
-            // lostPetModel.Id = updateLostPetDto.Id;
-            // lostPetModel.IsActive = updateLostPetDto.IsActive;
 
             lostPetModel.AnimalType = updateLostPetDto.AnimalType;
             lostPetModel.Name = updateLostPetDto.Name;
             lostPetModel.Gender = updateLostPetDto.Gender;
             lostPetModel.ReportDate = updateLostPetDto.ReportDate;
-            
+
             await _context.SaveChangesAsync();
 
             return lostPetModel;

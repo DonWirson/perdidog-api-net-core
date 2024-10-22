@@ -27,6 +27,10 @@ namespace perdidog.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var lostPets = await _lostPetRepo.GetAll();
 
             var lostPetsDto = lostPets.Select(x => x.ToLostPetDto());
@@ -35,9 +39,14 @@ namespace perdidog.Controllers
         }
 
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var lostPet = await _lostPetRepo.GetOne(id);
             if (lostPet == null)
             {
@@ -50,6 +59,11 @@ namespace perdidog.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateLostPetDto createLostPetDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var lostPetModel = createLostPetDto.ToModel();
             await _lostPetRepo.Create(createLostPetDto);
 
@@ -57,9 +71,14 @@ namespace perdidog.Controllers
         }
 
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var lostPetModel = await _lostPetRepo.Delete(id);
             if (lostPetModel == null)
             {
@@ -69,9 +88,14 @@ namespace perdidog.Controllers
             return NoContent();
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{id:int}")]
         public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateLostPetDto updateLostPetDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
             var lostPetModel = await _lostPetRepo.Update(id, updateLostPetDto);
             if (lostPetModel == null)
             {
