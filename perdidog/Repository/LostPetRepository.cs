@@ -7,7 +7,7 @@ using perdidog.Data;
 using perdidog.Dtos;
 using perdidog.Interfaces;
 using perdidog.Mappers;
-using perdidog.Models;
+using perdidog.Models.Domain;
 
 namespace perdidog.Repository
 {
@@ -22,12 +22,12 @@ namespace perdidog.Repository
 
         public async Task<List<LostPet>> GetAll()
         {
-            return await _context.Dog.ToListAsync();
+            return await _context.LostPet.ToListAsync();
         }
 
-        public async Task<LostPet?> GetOne(int id)
+        public async Task<LostPet?> GetOne(Guid id)
         {
-            return await _context.Dog.FindAsync(id);
+            return await _context.LostPet.FindAsync(id);
         }
 
 
@@ -39,9 +39,9 @@ namespace perdidog.Repository
             return newLostPet;
 
         }
-        public async Task<LostPet?> Update(int id, UpdateLostPetDto updateLostPetDto)
+        public async Task<LostPet?> Update(Guid id, UpdateLostPetDto updateLostPetDto)
         {
-            var lostPetModel = _context.Dog.FirstOrDefault(x => x.Id == id);
+            var lostPetModel = _context.LostPet.FirstOrDefault(x => x.Id == id);
             if (lostPetModel == null)
             {
                 return null;
@@ -58,14 +58,14 @@ namespace perdidog.Repository
             return lostPetModel;
 
         }
-        public async Task<LostPet?> Delete(int id)
+        public async Task<LostPet?> Delete(Guid id)
         {
-            var lostPet = _context.Dog.FirstOrDefault(x => x.Id == id);
+            var lostPet = _context.LostPet.FirstOrDefault(x => x.Id == id);
             if (lostPet == null)
             {
                 return null;
             }
-            _context.Dog.Remove(lostPet);
+            _context.LostPet.Remove(lostPet);
             await _context.SaveChangesAsync();
             return lostPet;
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using perdidog.Dtos;
-using perdidog.Models;
+using perdidog.Models.Domain;
 
 namespace perdidog.Interfaces
 {
@@ -11,9 +11,9 @@ namespace perdidog.Interfaces
     {
 
         public Task<List<LostPet>> GetAll();
-        public Task<LostPet?> GetOne(int Id);
+        public Task<LostPet?> GetOne(Guid Id);
         public Task<LostPet> Create(CreateLostPetDto createLostPetDto);
-        public Task<LostPet?> Update(int Id,UpdateLostPetDto updateLostPetDto);
-        public Task<LostPet?> Delete(int Id);
+        public Task<LostPet?> Update(Guid Id,UpdateLostPetDto updateLostPetDto);
+        public Task<LostPet?> Delete(Guid Id);
     }
 }

@@ -7,12 +7,6 @@ namespace perdidog.enums
 {
     public class Enums
     {
-
-        public enum AnimalType
-        {
-            Dog,
-            Cat
-        }
         public enum Gender : int
         {
             NoIdea = 0,

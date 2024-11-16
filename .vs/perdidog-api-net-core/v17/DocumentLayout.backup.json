@@ -1,0 +1,219 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\tw98\\Documents\\git\\perdidog-api-net-core\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\tw98\\Documents\\git\\perdidog-api-net-core\\perdidog\\Migrations\\20241115062901_First migration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:perdidog\\Migrations\\20241115062901_First migration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{905300F3-F5E4-4A88-A2B0-8DEA21C3034A}|perdidog\\perdidog.csproj|c:\\users\\tw98\\documents\\git\\perdidog-api-net-core\\perdidog\\controllers\\lostpetcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{905300F3-F5E4-4A88-A2B0-8DEA21C3034A}|perdidog\\perdidog.csproj|solutionrelative:perdidog\\controllers\\lostpetcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{905300F3-F5E4-4A88-A2B0-8DEA21C3034A}|perdidog\\perdidog.csproj|c:\\users\\tw98\\documents\\git\\perdidog-api-net-core\\perdidog\\models\\domain\\animaltype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{905300F3-F5E4-4A88-A2B0-8DEA21C3034A}|perdidog\\perdidog.csproj|solutionrelative:perdidog\\models\\domain\\animaltype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{905300F3-F5E4-4A88-A2B0-8DEA21C3034A}|perdidog\\perdidog.csproj|c:\\users\\tw98\\documents\\git\\perdidog-api-net-core\\perdidog\\models\\domain\\lostpet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{905300F3-F5E4-4A88-A2B0-8DEA21C3034A}|perdidog\\perdidog.csproj|solutionrelative:perdidog\\models\\domain\\lostpet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{905300F3-F5E4-4A88-A2B0-8DEA21C3034A}|perdidog\\perdidog.csproj|c:\\users\\tw98\\documents\\git\\perdidog-api-net-core\\perdidog\\dtos\\updatelostpetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{905300F3-F5E4-4A88-A2B0-8DEA21C3034A}|perdidog\\perdidog.csproj|solutionrelative:perdidog\\dtos\\updatelostpetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{905300F3-F5E4-4A88-A2B0-8DEA21C3034A}|perdidog\\perdidog.csproj|c:\\users\\tw98\\documents\\git\\perdidog-api-net-core\\perdidog\\dtos\\lostpetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{905300F3-F5E4-4A88-A2B0-8DEA21C3034A}|perdidog\\perdidog.csproj|solutionrelative:perdidog\\dtos\\lostpetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{905300F3-F5E4-4A88-A2B0-8DEA21C3034A}|perdidog\\perdidog.csproj|c:\\users\\tw98\\documents\\git\\perdidog-api-net-core\\perdidog\\repository\\lostpetrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{905300F3-F5E4-4A88-A2B0-8DEA21C3034A}|perdidog\\perdidog.csproj|solutionrelative:perdidog\\repository\\lostpetrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{905300F3-F5E4-4A88-A2B0-8DEA21C3034A}|perdidog\\perdidog.csproj|c:\\users\\tw98\\documents\\git\\perdidog-api-net-core\\perdidog\\mappers\\lostpetmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{905300F3-F5E4-4A88-A2B0-8DEA21C3034A}|perdidog\\perdidog.csproj|solutionrelative:perdidog\\mappers\\lostpetmapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{905300F3-F5E4-4A88-A2B0-8DEA21C3034A}|perdidog\\perdidog.csproj|c:\\users\\tw98\\documents\\git\\perdidog-api-net-core\\perdidog\\dtos\\createlostpetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{905300F3-F5E4-4A88-A2B0-8DEA21C3034A}|perdidog\\perdidog.csproj|solutionrelative:perdidog\\dtos\\createlostpetdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{905300F3-F5E4-4A88-A2B0-8DEA21C3034A}|perdidog\\perdidog.csproj|c:\\users\\tw98\\documents\\git\\perdidog-api-net-core\\perdidog\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{905300F3-F5E4-4A88-A2B0-8DEA21C3034A}|perdidog\\perdidog.csproj|solutionrelative:perdidog\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{905300F3-F5E4-4A88-A2B0-8DEA21C3034A}|perdidog\\perdidog.csproj|c:\\users\\tw98\\documents\\git\\perdidog-api-net-core\\perdidog\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{905300F3-F5E4-4A88-A2B0-8DEA21C3034A}|perdidog\\perdidog.csproj|solutionrelative:perdidog\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "20241115062901_First migration.cs",
+              "DocumentMoniker": "C:\\Users\\tw98\\Documents\\git\\perdidog-api-net-core\\perdidog\\Migrations\\20241115062901_First migration.cs",
+              "RelativeDocumentMoniker": "perdidog\\Migrations\\20241115062901_First migration.cs",
+              "ToolTip": "C:\\Users\\tw98\\Documents\\git\\perdidog-api-net-core\\perdidog\\Migrations\\20241115062901_First migration.cs",
+              "RelativeToolTip": "perdidog\\Migrations\\20241115062901_First migration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T06:29:01.289Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LostPetController.cs",
+              "DocumentMoniker": "C:\\Users\\tw98\\Documents\\git\\perdidog-api-net-core\\perdidog\\Controllers\\LostPetController.cs",
+              "RelativeDocumentMoniker": "perdidog\\Controllers\\LostPetController.cs",
+              "ToolTip": "C:\\Users\\tw98\\Documents\\git\\perdidog-api-net-core\\perdidog\\Controllers\\LostPetController.cs",
+              "RelativeToolTip": "perdidog\\Controllers\\LostPetController.cs",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAgwEkAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T06:24:27.455Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AnimalType.cs",
+              "DocumentMoniker": "C:\\Users\\tw98\\Documents\\git\\perdidog-api-net-core\\perdidog\\Models\\Domain\\AnimalType.cs",
+              "RelativeDocumentMoniker": "perdidog\\Models\\Domain\\AnimalType.cs",
+              "ToolTip": "C:\\Users\\tw98\\Documents\\git\\perdidog-api-net-core\\perdidog\\Models\\Domain\\AnimalType.cs",
+              "RelativeToolTip": "perdidog\\Models\\Domain\\AnimalType.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T06:24:07.111Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LostPet.cs",
+              "DocumentMoniker": "C:\\Users\\tw98\\Documents\\git\\perdidog-api-net-core\\perdidog\\Models\\Domain\\LostPet.cs",
+              "RelativeDocumentMoniker": "perdidog\\Models\\Domain\\LostPet.cs",
+              "ToolTip": "C:\\Users\\tw98\\Documents\\git\\perdidog-api-net-core\\perdidog\\Models\\Domain\\LostPet.cs",
+              "RelativeToolTip": "perdidog\\Models\\Domain\\LostPet.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAqwBQAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T05:35:28.289Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "LostPetDto.cs",
+              "DocumentMoniker": "C:\\Users\\tw98\\Documents\\git\\perdidog-api-net-core\\perdidog\\Dtos\\LostPetDto.cs",
+              "RelativeDocumentMoniker": "perdidog\\Dtos\\LostPetDto.cs",
+              "ToolTip": "C:\\Users\\tw98\\Documents\\git\\perdidog-api-net-core\\perdidog\\Dtos\\LostPetDto.cs",
+              "RelativeToolTip": "perdidog\\Dtos\\LostPetDto.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAQwA0AAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T05:27:07.115Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UpdateLostPetDto.cs",
+              "DocumentMoniker": "C:\\Users\\tw98\\Documents\\git\\perdidog-api-net-core\\perdidog\\Dtos\\UpdateLostPetDto.cs",
+              "RelativeDocumentMoniker": "perdidog\\Dtos\\UpdateLostPetDto.cs",
+              "ToolTip": "C:\\Users\\tw98\\Documents\\git\\perdidog-api-net-core\\perdidog\\Dtos\\UpdateLostPetDto.cs",
+              "RelativeToolTip": "perdidog\\Dtos\\UpdateLostPetDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAsAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T05:27:11.628Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LostPetRepository.cs",
+              "DocumentMoniker": "C:\\Users\\tw98\\Documents\\git\\perdidog-api-net-core\\perdidog\\Repository\\LostPetRepository.cs",
+              "RelativeDocumentMoniker": "perdidog\\Repository\\LostPetRepository.cs",
+              "ToolTip": "C:\\Users\\tw98\\Documents\\git\\perdidog-api-net-core\\perdidog\\Repository\\LostPetRepository.cs",
+              "RelativeToolTip": "perdidog\\Repository\\LostPetRepository.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAuwBMAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T05:27:31.506Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "LostPetMapper.cs",
+              "DocumentMoniker": "C:\\Users\\tw98\\Documents\\git\\perdidog-api-net-core\\perdidog\\Mappers\\LostPetMapper.cs",
+              "RelativeDocumentMoniker": "perdidog\\Mappers\\LostPetMapper.cs",
+              "ToolTip": "C:\\Users\\tw98\\Documents\\git\\perdidog-api-net-core\\perdidog\\Mappers\\LostPetMapper.cs",
+              "RelativeToolTip": "perdidog\\Mappers\\LostPetMapper.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAYwA8AAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T05:34:25.64Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CreateLostPetDto.cs",
+              "DocumentMoniker": "C:\\Users\\tw98\\Documents\\git\\perdidog-api-net-core\\perdidog\\Dtos\\CreateLostPetDto.cs",
+              "RelativeDocumentMoniker": "perdidog\\Dtos\\CreateLostPetDto.cs",
+              "ToolTip": "C:\\Users\\tw98\\Documents\\git\\perdidog-api-net-core\\perdidog\\Dtos\\CreateLostPetDto.cs",
+              "RelativeToolTip": "perdidog\\Dtos\\CreateLostPetDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T05:26:59.991Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\tw98\\Documents\\git\\perdidog-api-net-core\\perdidog\\appsettings.json",
+              "RelativeDocumentMoniker": "perdidog\\appsettings.json",
+              "ToolTip": "C:\\Users\\tw98\\Documents\\git\\perdidog-api-net-core\\perdidog\\appsettings.json",
+              "RelativeToolTip": "perdidog\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-11-15T05:08:27.773Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ApplicationDBContext.cs",
+              "DocumentMoniker": "C:\\Users\\tw98\\Documents\\git\\perdidog-api-net-core\\perdidog\\Data\\ApplicationDBContext.cs",
+              "RelativeDocumentMoniker": "perdidog\\Data\\ApplicationDBContext.cs",
+              "ToolTip": "C:\\Users\\tw98\\Documents\\git\\perdidog-api-net-core\\perdidog\\Data\\ApplicationDBContext.cs",
+              "RelativeToolTip": "perdidog\\Data\\ApplicationDBContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-15T04:53:14.147Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

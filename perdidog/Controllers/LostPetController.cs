@@ -15,12 +15,12 @@ namespace perdidog.Controllers
     [ApiController]
     public class LostPetController : ControllerBase
     {
-        private readonly ApplicationDBContext _context;
+        private readonly ApplicationDBContext context;
         private readonly ILostPetInterface _lostPetRepo;
 
         public LostPetController(ApplicationDBContext context, ILostPetInterface lostPetRepo)
         {
-            _context = context;
+            this.context = context;
             _lostPetRepo = lostPetRepo;
         }
 
@@ -39,8 +39,8 @@ namespace perdidog.Controllers
         }
 
 
-        [HttpGet("{id:int}")]
-        public async Task<IActionResult> GetById([FromRoute] int id)
+        [HttpGet("{id:Guid}")]
+        public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
             {
@@ -71,8 +71,8 @@ namespace perdidog.Controllers
         }
 
 
-        [HttpDelete("{id:int}")]
-        public async Task<IActionResult> Delete([FromRoute] int id)
+        [HttpDelete("{id:Guid}")]
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
             {
@@ -88,8 +88,8 @@ namespace perdidog.Controllers
             return NoContent();
         }
 
-        [HttpPut("{id:int}")]
-        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateLostPetDto updateLostPetDto)
+        [HttpPut("{id:Guid}")]
+        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateLostPetDto updateLostPetDto)
         {
             if (!ModelState.IsValid)
             {
