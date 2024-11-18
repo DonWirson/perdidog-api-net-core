@@ -12,8 +12,8 @@ using perdidog.Data;
 namespace perdidog.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20241019011537_newDate")]
-    partial class newDate
+    [Migration("20241115062901_First migration")]
+    partial class Firstmigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,16 +25,29 @@ namespace perdidog.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("perdidog.Models.LostPet", b =>
+            modelBuilder.Entity("perdidog.Models.Domain.AnimalType", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("AnimalName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("AnimalType")
-                        .HasColumnType("int");
+                    b.HasKey("Id");
+
+                    b.ToTable("AnimalTypes");
+                });
+
+            modelBuilder.Entity("perdidog.Models.Domain.LostPet", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AnimalTypeId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Gender")
                         .HasColumnType("int");
@@ -50,7 +63,20 @@ namespace perdidog.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AnimalTypeId");
+
                     b.ToTable("Dog");
+                });
+
+            modelBuilder.Entity("perdidog.Models.Domain.LostPet", b =>
+                {
+                    b.HasOne("perdidog.Models.Domain.AnimalType", "AnimalType")
+                        .WithMany()
+                        .HasForeignKey("AnimalTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AnimalType");
                 });
 #pragma warning restore 612, 618
         }

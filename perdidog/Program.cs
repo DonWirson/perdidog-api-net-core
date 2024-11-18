@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using perdidog.Data;
 using perdidog.Interfaces;
+using perdidog.Mappers;
 using perdidog.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,10 +12,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+//AutoMapper
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
 //D.I
-builder.Services.AddScoped<ILostPetInterface, LostPetRepository>();
+builder.Services.AddScoped<ILostPetRepository, LostPetRepository>();
+builder.Services.AddScoped<IAnimalTypeRepository, AnimalTypeRepository>();
 
 
 //DBCONTEXT

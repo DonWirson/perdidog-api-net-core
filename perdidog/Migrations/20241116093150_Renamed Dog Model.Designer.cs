@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using perdidog.Data;
 
@@ -11,9 +12,11 @@ using perdidog.Data;
 namespace perdidog.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20241116093150_Renamed Dog Model")]
+    partial class RenamedDogModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,52 +38,6 @@ namespace perdidog.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AnimalTypes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("e1f95dcb-0103-47f6-9ddb-dad7dae65365"),
-                            AnimalName = "Cat"
-                        },
-                        new
-                        {
-                            Id = new Guid("64d6b2f4-77a3-46d8-91be-fc36ab0103b9"),
-                            AnimalName = "Dog"
-                        },
-                        new
-                        {
-                            Id = new Guid("b8851d86-8193-48a5-9561-458b82b16f1e"),
-                            AnimalName = "Snake"
-                        });
-                });
-
-            modelBuilder.Entity("perdidog.Models.Domain.Gender", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Gender");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Male"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Female"
-                        });
                 });
 
             modelBuilder.Entity("perdidog.Models.Domain.LostPet", b =>
@@ -92,7 +49,7 @@ namespace perdidog.Migrations
                     b.Property<Guid>("AnimalTypeId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("GenderId")
+                    b.Property<int>("Gender")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsActive")
@@ -108,8 +65,6 @@ namespace perdidog.Migrations
 
                     b.HasIndex("AnimalTypeId");
 
-                    b.HasIndex("GenderId");
-
                     b.ToTable("LostPet");
                 });
 
@@ -121,15 +76,7 @@ namespace perdidog.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("perdidog.Models.Domain.Gender", "Gender")
-                        .WithMany()
-                        .HasForeignKey("GenderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("AnimalType");
-
-                    b.Navigation("Gender");
                 });
 #pragma warning restore 612, 618
         }

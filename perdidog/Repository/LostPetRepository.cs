@@ -7,11 +7,11 @@ using perdidog.Data;
 using perdidog.Dtos;
 using perdidog.Interfaces;
 using perdidog.Mappers;
-using perdidog.Models;
+using perdidog.Models.Domain;
 
 namespace perdidog.Repository
 {
-    public class LostPetRepository : ILostPetInterface
+    public class LostPetRepository : ILostPetRepository
     {
         private readonly ApplicationDBContext _context;
 
@@ -20,52 +20,50 @@ namespace perdidog.Repository
             _context = context;
         }
 
-        public async Task<List<LostPet>> GetAll()
+        public async Task<List<LostPet>> GetAllAsync()
         {
-            return await _context.Dog.ToListAsync();
+            return await _context.LostPet.Include("AnimalType").Include("Gender").ToListAsync();
         }
 
-        public async Task<LostPet?> GetOne(int id)
+        public async Task<LostPet?> GetOneAsync(Guid id)
         {
-            return await _context.Dog.FindAsync(id);
+            return await _context.LostPet.Include("AnimalType").Include("Gender").FirstOrDefaultAsync(x => x.Id == id);
         }
 
 
-        public async Task<LostPet> Create(CreateLostPetDto createLostPetDto)
+        public async Task<LostPet> CreateAsync(LostPet lostPet)
         {
-            var newLostPet = createLostPetDto.ToModel();
-            await _context.AddAsync(newLostPet);
+            await _context.AddAsync(lostPet);
             await _context.SaveChangesAsync();
-            return newLostPet;
+            return lostPet;
 
         }
-        public async Task<LostPet?> Update(int id, UpdateLostPetDto updateLostPetDto)
+        public async Task<LostPet?> UpdateAsync(Guid id, UpdateLostPetDto updateLostPetDto)
         {
-            var lostPetModel = _context.Dog.FirstOrDefault(x => x.Id == id);
+            var lostPetModel = _context.LostPet.FirstOrDefault(x => x.Id == id);
             if (lostPetModel == null)
             {
                 return null;
             }
 
-
-            lostPetModel.AnimalType = updateLostPetDto.AnimalType;
             lostPetModel.Name = updateLostPetDto.Name;
-            lostPetModel.Gender = updateLostPetDto.Gender;
-            lostPetModel.ReportDate = updateLostPetDto.ReportDate;
+            lostPetModel.IsActive = updateLostPetDto.IsActive;
+            lostPetModel.GenderId = updateLostPetDto.GenderId;
+            lostPetModel.AnimalTypeId = updateLostPetDto.AnimalTypeId;
 
             await _context.SaveChangesAsync();
 
             return lostPetModel;
 
         }
-        public async Task<LostPet?> Delete(int id)
+        public async Task<LostPet?> DeleteAsync(Guid id)
         {
-            var lostPet = _context.Dog.FirstOrDefault(x => x.Id == id);
+            var lostPet = _context.LostPet.FirstOrDefault(x => x.Id == id);
             if (lostPet == null)
             {
                 return null;
             }
-            _context.Dog.Remove(lostPet);
+            _context.LostPet.Remove(lostPet);
             await _context.SaveChangesAsync();
             return lostPet;
 
