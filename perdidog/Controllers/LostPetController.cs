@@ -2,12 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using perdidog.Data;
 using perdidog.Dtos;
 using perdidog.Interfaces;
 using perdidog.Mappers;
+using perdidog.Models.Domain;
 
 namespace perdidog.Controllers
 {
@@ -17,11 +19,13 @@ namespace perdidog.Controllers
     {
         private readonly ApplicationDBContext context;
         private readonly ILostPetRepository _lostPetRepo;
+        private readonly IMapper mapper;
 
-        public LostPetController(ApplicationDBContext context, ILostPetRepository lostPetRepo)
+        public LostPetController(ApplicationDBContext context, ILostPetRepository lostPetRepo,IMapper mapper)
         {
             this.context = context;
             _lostPetRepo = lostPetRepo;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -33,7 +37,7 @@ namespace perdidog.Controllers
             }
             var lostPets = await _lostPetRepo.GetAllAsync();
 
-            var lostPetsDto = lostPets.Select(x => x.ToLostPetDto());
+            var lostPetsDto = mapper.Map<List<LostPetDto>>(lostPets);
 
             return Ok(lostPetsDto);
         }
@@ -53,7 +57,7 @@ namespace perdidog.Controllers
                 return NotFound();
             }
 
-            return Ok(lostPet.ToLostPetDto());
+            return Ok(mapper.Map<LostPetDto>(lostPet));
         }
 
         [HttpPost]
@@ -64,7 +68,7 @@ namespace perdidog.Controllers
                 return BadRequest(ModelState);
             }
 
-            var lostPetModel = createLostPetDto.ToModel();
+            var lostPetModel = mapper.Map<LostPet>(createLostPetDto);
             await _lostPetRepo.CreateAsync(lostPetModel);
 
             return CreatedAtAction(nameof(GetById), new { id = lostPetModel.Id }, lostPetModel.ToLostPetDto());
@@ -102,7 +106,7 @@ namespace perdidog.Controllers
                 return NotFound();
             }
 
-            return Ok(lostPetModel.ToLostPetDto());
+            return Ok(mapper.Map<LostPetDto>(lostPetModel));
         }
     }
 }
