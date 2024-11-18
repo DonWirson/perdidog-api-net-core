@@ -14,11 +14,12 @@ namespace perdidog.Mappers
             return new LostPetDto
             {
                 Id = lostPet.Id,
-                AnimalType = lostPet.AnimalType,
                 Name = lostPet.Name,
                 Gender = lostPet.Gender,
                 ReportDate = lostPet.ReportDate,
                 IsActive = lostPet.IsActive,
+                AnimalTypeId = lostPet.AnimalTypeId,
+                     AnimalType = lostPet.AnimalType,
 
             };
         }
@@ -26,10 +27,10 @@ namespace perdidog.Mappers
         {
             return new LostPet
             {
-                AnimalType = lostPetDto.AnimalType,
                 Name = lostPetDto.Name,
-                Gender = lostPetDto.Gender,
+                AnimalTypeId = lostPetDto.AnimalTypeId,
                 ReportDate = DateTime.Now,
+                IsActive = true,
             };
         }
     }

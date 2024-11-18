@@ -286,3 +286,4 @@ C:\Users\tw98\Documents\git\perdidog-api-net-core\perdidog\obj\Debug\net8.0\refi
 C:\Users\tw98\Documents\git\perdidog-api-net-core\perdidog\obj\Debug\net8.0\perdidog.pdb
 C:\Users\tw98\Documents\git\perdidog-api-net-core\perdidog\obj\Debug\net8.0\perdidog.genruntimeconfig.cache
 C:\Users\tw98\Documents\git\perdidog-api-net-core\perdidog\obj\Debug\net8.0\ref\perdidog.dll
+C:\Users\tw98\Documents\git\perdidog-api-net-core\perdidog\bin\Debug\net8.0\AutoMapper.dll

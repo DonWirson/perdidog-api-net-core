@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using perdidog.Data;
 using perdidog.Interfaces;
 using perdidog.Mappers;
+using perdidog.Models.Domain;
 using perdidog.Models.Dtos;
 
 namespace perdidog.Controllers
@@ -15,18 +17,20 @@ namespace perdidog.Controllers
 
         private readonly ApplicationDBContext context;
         private readonly IAnimalTypeRepository animalTypeRepository;
+        private readonly IMapper mapper;
 
-        public AnimalTypeController(ApplicationDBContext context, IAnimalTypeRepository animalTypeRepository)
+        public AnimalTypeController(ApplicationDBContext context, IAnimalTypeRepository animalTypeRepository, IMapper mapper)
         {
             this.context = context;
             this.animalTypeRepository = animalTypeRepository;
+            this.mapper = mapper;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var animalTypesModel = await context.AnimalTypes.ToListAsync();
-            var animalTypesDto = animalTypesModel.Select(x => x.ToAnimalTypeDto());
+            var animalTypesModel = await animalTypeRepository.GetAllAsync();
+            var animalTypesDto = mapper.Map<List<AnimalTypesDto>>(animalTypesModel);
 
             return Ok(animalTypesDto);
         }
@@ -40,7 +44,8 @@ namespace perdidog.Controllers
             {
                 return NotFound();
             }
-            var animalTypeDto = animalTypeModel.ToAnimalTypeDto();
+
+            var animalTypeDto = mapper.Map<AnimalTypesDto>(animalTypeModel);
 
             return Ok(animalTypeDto);
         }
@@ -48,11 +53,11 @@ namespace perdidog.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateAnimalTypeDto createAnimalTypeDto)
         {
-            var animalTypeModel = createAnimalTypeDto.ToModel();
+            var animalTypeModel = mapper.Map<AnimalType>(createAnimalTypeDto);
 
             await animalTypeRepository.CreateAsync(animalTypeModel);
 
-            var animalTypeDto = animalTypeModel.ToAnimalTypeDto();
+            var animalTypeDto = mapper.Map<AnimalTypesDto>(animalTypeModel);
 
             return CreatedAtAction(nameof(GetById), new { id = animalTypeDto.Id }, animalTypeDto);
         }
@@ -66,7 +71,7 @@ namespace perdidog.Controllers
             {
                 return NotFound();
             }
-            var animalTypeDto = animalTypeModel.ToAnimalTypeDto();
+            var animalTypeDto = mapper.Map<AnimalTypesDto>(animalTypeModel);
 
             return Ok(animalTypeDto);
         }

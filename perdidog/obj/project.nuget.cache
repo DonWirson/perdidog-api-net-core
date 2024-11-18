@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "5waNzhYynhk=",
+  "dgSpecHash": "1Xg8aKC8BiA=",
   "success": true,
   "projectFilePath": "C:\\Users\\tw98\\Documents\\git\\perdidog-api-net-core\\perdidog\\perdidog.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\tw98\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\tw98\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\tw98\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
     "C:\\Users\\tw98\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
