@@ -11,7 +11,7 @@ using perdidog.Models.Domain;
 
 namespace perdidog.Repository
 {
-    public class LostPetRepository : ILostPetInterface
+    public class LostPetRepository : ILostPetRepository
     {
         private readonly ApplicationDBContext _context;
 
@@ -27,16 +27,15 @@ namespace perdidog.Repository
 
         public async Task<LostPet?> GetOne(Guid id)
         {
-            return await _context.LostPet.FindAsync(id);
+            return await _context.LostPet.FirstOrDefaultAsync(x => x.Id == id);
         }
 
 
-        public async Task<LostPet> Create(CreateLostPetDto createLostPetDto)
+        public async Task<LostPet> Create(LostPet lostPet)
         {
-            var newLostPet = createLostPetDto.ToModel();
-            await _context.AddAsync(newLostPet);
+            await _context.AddAsync(lostPet);
             await _context.SaveChangesAsync();
-            return newLostPet;
+            return lostPet;
 
         }
         public async Task<LostPet?> Update(Guid id, UpdateLostPetDto updateLostPetDto)

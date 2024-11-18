@@ -16,9 +16,9 @@ namespace perdidog.Controllers
     public class LostPetController : ControllerBase
     {
         private readonly ApplicationDBContext context;
-        private readonly ILostPetInterface _lostPetRepo;
+        private readonly ILostPetRepository _lostPetRepo;
 
-        public LostPetController(ApplicationDBContext context, ILostPetInterface lostPetRepo)
+        public LostPetController(ApplicationDBContext context, ILostPetRepository lostPetRepo)
         {
             this.context = context;
             _lostPetRepo = lostPetRepo;
@@ -31,7 +31,7 @@ namespace perdidog.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var lostPets = await _lostPetRepo.GetAll();
+            var lostPets = await _lostPetRepo.GetAllAsync();
 
             var lostPetsDto = lostPets.Select(x => x.ToLostPetDto());
 
@@ -47,7 +47,7 @@ namespace perdidog.Controllers
                 return BadRequest(ModelState);
             }
 
-            var lostPet = await _lostPetRepo.GetOne(id);
+            var lostPet = await _lostPetRepo.GetOneAsync(id);
             if (lostPet == null)
             {
                 return NotFound();
@@ -65,7 +65,7 @@ namespace perdidog.Controllers
             }
 
             var lostPetModel = createLostPetDto.ToModel();
-            await _lostPetRepo.Create(createLostPetDto);
+            await _lostPetRepo.CreateAsync(lostPetModel);
 
             return CreatedAtAction(nameof(GetById), new { id = lostPetModel.Id }, lostPetModel.ToLostPetDto());
         }
@@ -79,7 +79,7 @@ namespace perdidog.Controllers
                 return BadRequest(ModelState);
             }
 
-            var lostPetModel = await _lostPetRepo.Delete(id);
+            var lostPetModel = await _lostPetRepo.DeleteAsync(id);
             if (lostPetModel == null)
             {
                 return NotFound();
@@ -96,7 +96,7 @@ namespace perdidog.Controllers
                 return BadRequest(ModelState);
             }
 
-            var lostPetModel = await _lostPetRepo.Update(id, updateLostPetDto);
+            var lostPetModel = await _lostPetRepo.UpdateAsync(id, updateLostPetDto);
             if (lostPetModel == null)
             {
                 return NotFound();

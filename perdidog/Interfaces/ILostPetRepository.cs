@@ -7,13 +7,12 @@ using perdidog.Models.Domain;
 
 namespace perdidog.Interfaces
 {
-    public interface ILostPetInterface
+    public interface ILostPetRepository
     {
-
-        public Task<List<LostPet>> GetAll();
-        public Task<LostPet?> GetOne(Guid Id);
-        public Task<LostPet> Create(CreateLostPetDto createLostPetDto);
-        public Task<LostPet?> Update(Guid Id,UpdateLostPetDto updateLostPetDto);
-        public Task<LostPet?> Delete(Guid Id);
+        public Task<List<LostPet>> GetAllAsync();
+        public Task<LostPet?> GetOneAsync(Guid Id);
+        public Task<LostPet> CreateAsync(LostPet lostPet);
+        public Task<LostPet?> UpdateAsync(Guid Id, UpdateLostPetDto updateLostPetDto);
+        public Task<LostPet?> DeleteAsync(Guid Id);
     }
 }
