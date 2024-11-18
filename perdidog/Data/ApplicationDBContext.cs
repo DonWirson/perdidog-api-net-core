@@ -16,6 +16,7 @@ namespace perdidog.Data
 
         public DbSet<LostPet> LostPet { get; set; }
         public DbSet<AnimalType> AnimalTypes { get; set; }
+        public DbSet<Gender> Gender { get; set; }
 
     }
 }
