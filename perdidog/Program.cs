@@ -14,7 +14,8 @@ builder.Services.AddSwaggerGen();
 
 
 //D.I
-builder.Services.AddScoped<ILostPetInterface, LostPetRepository>();
+builder.Services.AddScoped<ILostPetRepository, LostPetRepository>();
+builder.Services.AddScoped<IAnimalTypeRepository, AnimalTypeRepository>();
 
 
 //DBCONTEXT

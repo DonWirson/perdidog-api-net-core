@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using perdidog.Data;
+using perdidog.Interfaces;
 using perdidog.Mappers;
 using perdidog.Models.Dtos;
 
@@ -12,38 +14,43 @@ namespace perdidog.Controllers
     {
 
         private readonly ApplicationDBContext context;
-        public AnimalTypeController(ApplicationDBContext context)
+        private readonly IAnimalTypeRepository animalTypeRepository;
+
+        public AnimalTypeController(ApplicationDBContext context, IAnimalTypeRepository animalTypeRepository)
         {
             this.context = context;
+            this.animalTypeRepository = animalTypeRepository;
         }
+
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var animalTypes = this.context.AnimalTypes.ToList();
-            return Ok(animalTypes);
+            var animalTypesModel = await context.AnimalTypes.ToListAsync();
+            var animalTypesDto = animalTypesModel.Select(x => x.ToAnimalTypeDto());
+
+            return Ok(animalTypesDto);
         }
 
         [HttpGet]
         [Route("{id:Guid}")]
-        public IActionResult GetById([FromRoute] Guid id)
+        public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
-            var animalType = this.context.AnimalTypes.FirstOrDefault(x => x.Id == id);
-            if (animalType == null)
+            var animalTypeModel = await animalTypeRepository.GetOneAsync(id);
+            if (animalTypeModel == null)
             {
                 return NotFound();
             }
-            var animalTypeDto = animalType.ToAnimalTypeDto();
+            var animalTypeDto = animalTypeModel.ToAnimalTypeDto();
 
             return Ok(animalTypeDto);
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] CreateAnimalTypeDto createAnimalTypeDto)
+        public async Task<IActionResult> Create([FromBody] CreateAnimalTypeDto createAnimalTypeDto)
         {
             var animalTypeModel = createAnimalTypeDto.ToModel();
 
-            context.AnimalTypes.Add(animalTypeModel);
-            context.SaveChanges();
+            await animalTypeRepository.CreateAsync(animalTypeModel);
 
             var animalTypeDto = animalTypeModel.ToAnimalTypeDto();
 
@@ -52,16 +59,13 @@ namespace perdidog.Controllers
 
         [HttpPut]
         [Route("{id:Guid}")]
-        public IActionResult Update([FromRoute] Guid id, [FromBody] UpdateAnimalTypeDto updateAnimalTypeDto)
+        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateAnimalTypeDto updateAnimalTypeDto)
         {
-            var animalTypeModel = context.AnimalTypes.FirstOrDefault(x => x.Id == id);
+            var animalTypeModel = await animalTypeRepository.UpdateAsync(id, updateAnimalTypeDto);
             if (animalTypeModel == null)
             {
                 return NotFound();
             }
-            animalTypeModel.AnimalName = updateAnimalTypeDto.AnimalName;
-            context.SaveChanges();
-
             var animalTypeDto = animalTypeModel.ToAnimalTypeDto();
 
             return Ok(animalTypeDto);
@@ -69,15 +73,13 @@ namespace perdidog.Controllers
 
         [HttpDelete]
         [Route("{id:Guid}")]
-        public IActionResult Delete([FromRoute] Guid id)
+        public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
-            var animalTypeModel = context.AnimalTypes.FirstOrDefault(x => x.Id == id);
+            var animalTypeModel = await animalTypeRepository.DeleteAsync(id);
             if (animalTypeModel == null)
             {
                 return NotFound();
             }
-            context.AnimalTypes.Remove(animalTypeModel);
-            context.SaveChanges();
 
             return Ok(true);
         }
