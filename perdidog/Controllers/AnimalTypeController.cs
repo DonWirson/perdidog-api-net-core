@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using perdidog.CustomActionFilters;
 using perdidog.Data;
 using perdidog.Interfaces;
 using perdidog.Mappers;
@@ -51,6 +53,7 @@ namespace perdidog.Controllers
         }
 
         [HttpPost]
+        [ValidateModel]
         public async Task<IActionResult> Create([FromBody] CreateAnimalTypeDto createAnimalTypeDto)
         {
             var animalTypeModel = mapper.Map<AnimalType>(createAnimalTypeDto);
@@ -64,6 +67,7 @@ namespace perdidog.Controllers
 
         [HttpPut]
         [Route("{id:Guid}")]
+        [ValidateModel]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateAnimalTypeDto updateAnimalTypeDto)
         {
             var animalTypeModel = await animalTypeRepository.UpdateAsync(id, updateAnimalTypeDto);

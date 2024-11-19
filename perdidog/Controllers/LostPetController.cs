@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using perdidog.CustomActionFilters;
 using perdidog.Data;
 using perdidog.Dtos;
 using perdidog.Interfaces;
@@ -21,7 +22,7 @@ namespace perdidog.Controllers
         private readonly ILostPetRepository _lostPetRepo;
         private readonly IMapper mapper;
 
-        public LostPetController(ApplicationDBContext context, ILostPetRepository lostPetRepo,IMapper mapper)
+        public LostPetController(ApplicationDBContext context, ILostPetRepository lostPetRepo, IMapper mapper)
         {
             this.context = context;
             _lostPetRepo = lostPetRepo;
@@ -61,12 +62,9 @@ namespace perdidog.Controllers
         }
 
         [HttpPost]
+        [ValidateModel]
         public async Task<IActionResult> Create([FromBody] CreateLostPetDto createLostPetDto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
 
             var lostPetModel = mapper.Map<LostPet>(createLostPetDto);
             await _lostPetRepo.CreateAsync(lostPetModel);
@@ -78,11 +76,6 @@ namespace perdidog.Controllers
         [HttpDelete("{id:Guid}")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             var lostPetModel = await _lostPetRepo.DeleteAsync(id);
             if (lostPetModel == null)
             {
@@ -93,13 +86,9 @@ namespace perdidog.Controllers
         }
 
         [HttpPut("{id:Guid}")]
+        [ValidateModel]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateLostPetDto updateLostPetDto)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             var lostPetModel = await _lostPetRepo.UpdateAsync(id, updateLostPetDto);
             if (lostPetModel == null)
             {
