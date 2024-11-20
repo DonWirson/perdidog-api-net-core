@@ -8,6 +8,6 @@ namespace perdidog.Models.Dtos
     public class AnimalTypesDto
     {
         public Guid Id { get; set; }
-        public string AnimalName { get; set; }
+        public string Name { get; set; }
     }
 }

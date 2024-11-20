@@ -14,7 +14,7 @@ namespace perdidog.Mappers
             return new AnimalTypesDto
             {
                 Id = animalType.Id,
-                AnimalName = animalType.AnimalName
+                Name = animalType.Name
             };
         }
 
@@ -22,7 +22,7 @@ namespace perdidog.Mappers
         {
             return new AnimalType
             {
-                AnimalName = animalTypeDto.AnimalName
+                Name = animalTypeDto.Name
             };
 
         }
