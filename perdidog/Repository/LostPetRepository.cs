@@ -32,7 +32,7 @@ namespace perdidog.Repository
             }
             if (!string.IsNullOrWhiteSpace(queryObject.AnimalTypeId.ToString()))
             {
-                lostPets = lostPets.Where(x => x.IsActive==queryObject.IsActive);
+                lostPets = lostPets.Where(x => x.IsActive == queryObject.IsActive);
             }
             //Sort
             if (!string.IsNullOrWhiteSpace(queryObject.SortBy))
@@ -51,7 +51,10 @@ namespace perdidog.Repository
                 }
             }
 
-                return await lostPets.ToListAsync();
+            //Pagination
+            var skipResults = (queryObject.PageNumber - 1) * queryObject.PageSize;
+
+            return await lostPets.Skip(skipResults).Take(queryObject.PageSize).ToListAsync();
         }
 
         public async Task<LostPet?> GetOneAsync(Guid id)

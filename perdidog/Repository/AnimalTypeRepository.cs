@@ -22,21 +22,24 @@ namespace perdidog.Repository
         {
             var animalTypes = this.dbContext.AnimalTypes.AsQueryable();
 
-            if(!string.IsNullOrWhiteSpace(queryObject.Name)) {
-                animalTypes =  animalTypes.Where(x => x.Name.Contains(queryObject.Name));
+            if (!string.IsNullOrWhiteSpace(queryObject.Name))
+            {
+                animalTypes = animalTypes.Where(x => x.Name.Contains(queryObject.Name));
             }
 
             if (!string.IsNullOrWhiteSpace(queryObject.SortBy))
             {
                 if (queryObject.SortBy.Equals("Name"))
                 {
-                    animalTypes = queryObject.IsAscending ? 
-                        animalTypes.OrderBy(x=> x.Name) :
+                    animalTypes = queryObject.IsAscending ?
+                        animalTypes.OrderBy(x => x.Name) :
                         animalTypes.OrderByDescending(x => x.Name);
                 }
             }
+            //Pagination
+            var skipResults = (queryObject.PageNumber - 1) * queryObject.PageSize;
 
-            return await animalTypes.ToListAsync();
+            return await animalTypes.Skip(skipResults).Take(queryObject.PageSize).ToListAsync();
         }
         public async Task<AnimalType?> GetOneAsync(Guid Id)
         {
