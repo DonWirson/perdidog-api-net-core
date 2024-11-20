@@ -24,12 +24,34 @@ namespace perdidog.Repository
         public async Task<List<LostPet>> GetAllAsync(QueryObjectLostPet queryObject)
         {
             var lostPets = _context.LostPet.Include("AnimalType").Include("Gender").AsQueryable();
+
+            //Filter
             if (!string.IsNullOrWhiteSpace(queryObject.Name))
             {
                 lostPets = lostPets.Where(x => x.Name.Contains(queryObject.Name));
             }
+            if (!string.IsNullOrWhiteSpace(queryObject.AnimalTypeId.ToString()))
+            {
+                lostPets = lostPets.Where(x => x.IsActive==queryObject.IsActive);
+            }
+            //Sort
+            if (!string.IsNullOrWhiteSpace(queryObject.SortBy))
+            {
+                if (queryObject.SortBy.Equals("Name"))
+                {
+                    lostPets = queryObject.IsAscending ?
+                        lostPets.OrderBy(x => x.Name) :
+                        lostPets.OrderByDescending(x => x.Name);
+                }
+                if (queryObject.SortBy.Equals("IsActive"))
+                {
+                    lostPets = queryObject.IsAscending ?
+                        lostPets.OrderBy(x => x.IsActive) :
+                        lostPets.OrderByDescending(x => x.IsActive);
+                }
+            }
 
-            return await lostPets.ToListAsync();
+                return await lostPets.ToListAsync();
         }
 
         public async Task<LostPet?> GetOneAsync(Guid id)

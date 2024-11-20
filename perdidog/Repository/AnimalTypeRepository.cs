@@ -26,6 +26,16 @@ namespace perdidog.Repository
                 animalTypes =  animalTypes.Where(x => x.Name.Contains(queryObject.Name));
             }
 
+            if (!string.IsNullOrWhiteSpace(queryObject.SortBy))
+            {
+                if (queryObject.SortBy.Equals("Name"))
+                {
+                    animalTypes = queryObject.IsAscending ? 
+                        animalTypes.OrderBy(x=> x.Name) :
+                        animalTypes.OrderByDescending(x => x.Name);
+                }
+            }
+
             return await animalTypes.ToListAsync();
         }
         public async Task<AnimalType?> GetOneAsync(Guid Id)
