@@ -11,6 +11,6 @@ namespace perdidog.Models.Dtos
         [Required]
         [MinLength(3, ErrorMessage = "AnimalName must be at least 3 characters")]
         [MaxLength(15, ErrorMessage = "AnimalName must be up to 15 characters")]
-        public string AnimalName { get; set; }
+        public string Name { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using perdidog.CustomActionFilters;
 using perdidog.Data;
+using perdidog.Helpers;
 using perdidog.Interfaces;
 using perdidog.Mappers;
 using perdidog.Models.Domain;
@@ -29,9 +30,9 @@ namespace perdidog.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] QueryObjectAnimalType queryObject)
         {
-            var animalTypesModel = await animalTypeRepository.GetAllAsync();
+            var animalTypesModel = await animalTypeRepository.GetAllAsync(queryObject);
             var animalTypesDto = mapper.Map<List<AnimalTypesDto>>(animalTypesModel);
 
             return Ok(animalTypesDto);

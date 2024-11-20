@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using perdidog.Data;
 using perdidog.Dtos;
+using perdidog.Helpers;
 using perdidog.Interfaces;
 using perdidog.Mappers;
 using perdidog.Models.Domain;
@@ -20,9 +21,15 @@ namespace perdidog.Repository
             _context = context;
         }
 
-        public async Task<List<LostPet>> GetAllAsync()
+        public async Task<List<LostPet>> GetAllAsync(QueryObjectLostPet queryObject)
         {
-            return await _context.LostPet.Include("AnimalType").Include("Gender").ToListAsync();
+            var lostPets = _context.LostPet.Include("AnimalType").Include("Gender").AsQueryable();
+            if (!string.IsNullOrWhiteSpace(queryObject.Name))
+            {
+                lostPets = lostPets.Where(x => x.Name.Contains(queryObject.Name));
+            }
+
+            return await lostPets.ToListAsync();
         }
 
         public async Task<LostPet?> GetOneAsync(Guid id)

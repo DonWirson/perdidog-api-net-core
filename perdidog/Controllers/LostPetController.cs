@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using perdidog.CustomActionFilters;
 using perdidog.Data;
 using perdidog.Dtos;
+using perdidog.Helpers;
 using perdidog.Interfaces;
 using perdidog.Mappers;
 using perdidog.Models.Domain;
@@ -30,13 +31,13 @@ namespace perdidog.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] QueryObjectLostPet queryObject)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var lostPets = await _lostPetRepo.GetAllAsync();
+            var lostPets = await _lostPetRepo.GetAllAsync(queryObject);
 
             var lostPetsDto = mapper.Map<List<LostPetDto>>(lostPets);
 

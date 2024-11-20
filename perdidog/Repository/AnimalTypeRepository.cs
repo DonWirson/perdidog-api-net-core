@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using perdidog.Data;
 using perdidog.Dtos;
+using perdidog.Helpers;
 using perdidog.Interfaces;
 using perdidog.Models.Domain;
 using perdidog.Models.Dtos;
@@ -17,13 +18,16 @@ namespace perdidog.Repository
             this.dbContext = dbContext;
         }
 
-        public async Task<List<AnimalType>> GetAllAsync()
+        public async Task<List<AnimalType>> GetAllAsync(QueryObjectAnimalType queryObject)
         {
-            var animalTypes = await this.dbContext.AnimalTypes.ToListAsync();
+            var animalTypes = this.dbContext.AnimalTypes.AsQueryable();
 
-            return animalTypes;
+            if(!string.IsNullOrWhiteSpace(queryObject.Name)) {
+                animalTypes =  animalTypes.Where(x => x.Name.Contains(queryObject.Name));
+            }
+
+            return await animalTypes.ToListAsync();
         }
-
         public async Task<AnimalType?> GetOneAsync(Guid Id)
         {
             var animalType = await this.dbContext.AnimalTypes.FirstOrDefaultAsync(x => x.Id == Id);
@@ -57,7 +61,7 @@ namespace perdidog.Repository
             {
                 return null;
             }
-            animalType.AnimalName = updateAnimalTypeDto.AnimalName;
+            animalType.Name = updateAnimalTypeDto.Name;
 
             await this.dbContext.SaveChangesAsync();
             return animalType;
