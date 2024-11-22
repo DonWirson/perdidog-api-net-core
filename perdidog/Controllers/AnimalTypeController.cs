@@ -32,6 +32,7 @@ namespace perdidog.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Guest,User")]
         public async Task<IActionResult> GetAll([FromQuery] QueryObjectAnimalType queryObject)
         {
             var animalTypesModel = await animalTypeRepository.GetAllAsync(queryObject);
@@ -42,6 +43,7 @@ namespace perdidog.Controllers
 
         [HttpGet]
         [Route("{id:Guid}")]
+        [Authorize(Roles = "Guest,User")]
         public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
             var animalTypeModel = await animalTypeRepository.GetOneAsync(id);
@@ -57,6 +59,7 @@ namespace perdidog.Controllers
 
         [HttpPost]
         [ValidateModel]
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> Create([FromBody] CreateAnimalTypeDto createAnimalTypeDto)
         {
             var animalTypeModel = mapper.Map<AnimalType>(createAnimalTypeDto);
@@ -71,6 +74,7 @@ namespace perdidog.Controllers
         [HttpPut]
         [Route("{id:Guid}")]
         [ValidateModel]
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateAnimalTypeDto updateAnimalTypeDto)
         {
             var animalTypeModel = await animalTypeRepository.UpdateAsync(id, updateAnimalTypeDto);
@@ -85,6 +89,7 @@ namespace perdidog.Controllers
 
         [HttpDelete]
         [Route("{id:Guid}")]
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             var animalTypeModel = await animalTypeRepository.DeleteAsync(id);
@@ -92,7 +97,6 @@ namespace perdidog.Controllers
             {
                 return NotFound();
             }
-
             return Ok(true);
         }
 
