@@ -18,7 +18,6 @@ namespace perdidog.Controllers
 {
     [Route("api/lost-pet")]
     [ApiController]
-    [Authorize]
     public class LostPetController : ControllerBase
     {
         private readonly ApplicationDBContext context;
@@ -33,6 +32,7 @@ namespace perdidog.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Guest,User")]
         public async Task<IActionResult> GetAll([FromQuery] QueryObjectLostPet queryObject)
         {
             if (!ModelState.IsValid)
@@ -48,6 +48,7 @@ namespace perdidog.Controllers
 
 
         [HttpGet("{id:Guid}")]
+        [Authorize(Roles = "Guest,User")]
         public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
             if (!ModelState.IsValid)
@@ -66,6 +67,7 @@ namespace perdidog.Controllers
 
         [HttpPost]
         [ValidateModel]
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> Create([FromBody] CreateLostPetDto createLostPetDto)
         {
 
@@ -77,6 +79,7 @@ namespace perdidog.Controllers
 
 
         [HttpDelete("{id:Guid}")]
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
             var lostPetModel = await _lostPetRepo.DeleteAsync(id);
@@ -90,6 +93,7 @@ namespace perdidog.Controllers
 
         [HttpPut("{id:Guid}")]
         [ValidateModel]
+        [Authorize(Roles = "User")]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateLostPetDto updateLostPetDto)
         {
             var lostPetModel = await _lostPetRepo.UpdateAsync(id, updateLostPetDto);
