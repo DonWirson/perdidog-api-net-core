@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using perdidog.CustomActionFilters;
@@ -17,6 +18,7 @@ namespace perdidog.Controllers
 {
     [Route("api/lost-pet")]
     [ApiController]
+    [Authorize]
     public class LostPetController : ControllerBase
     {
         private readonly ApplicationDBContext context;
