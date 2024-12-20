@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using perdidog.Data;
 
@@ -11,9 +12,11 @@ using perdidog.Data;
 namespace perdidog.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    partial class ApplicationDBContextModelSnapshot : ModelSnapshot
+    [Migration("20241126165834_Added image model")]
+    partial class Addedimagemodel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -140,44 +143,6 @@ namespace perdidog.Migrations
                     b.HasIndex("GenderId");
 
                     b.ToTable("LostPet");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("8b5849f8-554b-4057-bb90-9ba29aba9a1a"),
-                            AnimalTypeId = new Guid("64d6b2f4-77a3-46d8-91be-fc36ab0103b9"),
-                            GenderId = 1,
-                            IsActive = true,
-                            Name = "Cabezon",
-                            ReportDate = new DateTime(2024, 12, 20, 1, 4, 45, 635, DateTimeKind.Local).AddTicks(8336)
-                        },
-                        new
-                        {
-                            Id = new Guid("dfae5930-af55-4aa3-8c11-f141fd75ce69"),
-                            AnimalTypeId = new Guid("64d6b2f4-77a3-46d8-91be-fc36ab0103b9"),
-                            GenderId = 2,
-                            IsActive = true,
-                            Name = "Cabezona",
-                            ReportDate = new DateTime(2024, 12, 20, 1, 4, 45, 635, DateTimeKind.Local).AddTicks(8399)
-                        },
-                        new
-                        {
-                            Id = new Guid("22e71034-37e2-44ad-b31e-928b1f431d45"),
-                            AnimalTypeId = new Guid("64d6b2f4-77a3-46d8-91be-fc36ab0103b9"),
-                            GenderId = 1,
-                            IsActive = true,
-                            Name = "Lucky",
-                            ReportDate = new DateTime(2024, 12, 20, 1, 4, 45, 635, DateTimeKind.Local).AddTicks(8402)
-                        },
-                        new
-                        {
-                            Id = new Guid("8b06fc47-666f-4685-8ec0-d5793b9be883"),
-                            AnimalTypeId = new Guid("e1f95dcb-0103-47f6-9ddb-dad7dae65365"),
-                            GenderId = 1,
-                            IsActive = true,
-                            Name = "",
-                            ReportDate = new DateTime(2024, 12, 20, 1, 4, 45, 635, DateTimeKind.Local).AddTicks(8405)
-                        });
                 });
 
             modelBuilder.Entity("perdidog.Models.Domain.LostPet", b =>

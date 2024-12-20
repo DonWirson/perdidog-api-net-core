@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using perdidog.Interfaces;
 using perdidog.Models.Dtos;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace perdidog.Controllers
 {
@@ -21,7 +20,6 @@ namespace perdidog.Controllers
         }
 
 
-        // POST api/<AuthController>
         [HttpPost]
         [Route("Register")]
         public async Task<IActionResult> Post([FromBody] RegisterRequestDto registerRequestDto)
@@ -36,7 +34,6 @@ namespace perdidog.Controllers
 
             if (identityResult.Succeeded)
             {
-                //Add role to user
                 if (registerRequestDto.Roles != null && registerRequestDto.Roles.Any())
                 {
                     identityResult = await userManager.AddToRolesAsync(identityUser, registerRequestDto.Roles);
