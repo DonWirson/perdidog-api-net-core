@@ -27,12 +27,11 @@ namespace perdidog.Controllers
         public LostPetController(ApplicationDBContext context, ILostPetRepository lostPetRepo, IMapper mapper)
         {
             this.context = context;
-            _lostPetRepo = lostPetRepo;
             this.mapper = mapper;
+            _lostPetRepo = lostPetRepo;
         }
 
         [HttpGet]
-        [Authorize(Roles = "Guest,User")]
         public async Task<IActionResult> GetAll([FromQuery] QueryObjectLostPet queryObject)
         {
             if (!ModelState.IsValid)
@@ -47,9 +46,8 @@ namespace perdidog.Controllers
         }
 
 
-        [HttpGet("{id:Guid}")]
-        [Authorize(Roles = "Guest,User")]
-        public async Task<IActionResult> GetById([FromRoute] Guid id)
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetById([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
@@ -65,6 +63,7 @@ namespace perdidog.Controllers
             return Ok(mapper.Map<LostPetDto>(lostPet));
         }
 
+        
         [HttpPost]
         [ValidateModel]
         [Authorize(Roles = "User")]
@@ -78,9 +77,9 @@ namespace perdidog.Controllers
         }
 
 
-        [HttpDelete("{id:Guid}")]
+        [HttpDelete("{id:int}")]
         [Authorize(Roles = "User")]
-        public async Task<IActionResult> Delete([FromRoute] Guid id)
+        public async Task<IActionResult> Delete([FromRoute] int id)
         {
             var lostPetModel = await _lostPetRepo.DeleteAsync(id);
             if (lostPetModel == null)
@@ -91,10 +90,10 @@ namespace perdidog.Controllers
             return NoContent();
         }
 
-        [HttpPut("{id:Guid}")]
+        [HttpPut("{id:int}")]
         [ValidateModel]
         [Authorize(Roles = "User")]
-        public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] UpdateLostPetDto updateLostPetDto)
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateLostPetDto updateLostPetDto)
         {
             var lostPetModel = await _lostPetRepo.UpdateAsync(id, updateLostPetDto);
             if (lostPetModel == null)

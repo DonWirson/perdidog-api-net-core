@@ -24,9 +24,11 @@ namespace perdidog.Migrations
 
             modelBuilder.Entity("perdidog.Models.Domain.AnimalType", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -39,17 +41,17 @@ namespace perdidog.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e1f95dcb-0103-47f6-9ddb-dad7dae65365"),
+                            Id = 1,
                             Name = "Cat"
                         },
                         new
                         {
-                            Id = new Guid("64d6b2f4-77a3-46d8-91be-fc36ab0103b9"),
+                            Id = 2,
                             Name = "Dog"
                         },
                         new
                         {
-                            Id = new Guid("b8851d86-8193-48a5-9561-458b82b16f1e"),
+                            Id = 3,
                             Name = "Snake"
                         });
                 });
@@ -114,21 +116,35 @@ namespace perdidog.Migrations
 
             modelBuilder.Entity("perdidog.Models.Domain.LostPet", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
 
-                    b.Property<Guid>("AnimalTypeId")
-                        .HasColumnType("uniqueidentifier");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AnimalTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DistinctFeature")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("GenderId")
                         .HasColumnType("int");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PhoneNumberInscribed")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("ReportDate")
                         .HasColumnType("datetime2");
@@ -144,39 +160,39 @@ namespace perdidog.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("8b5849f8-554b-4057-bb90-9ba29aba9a1a"),
-                            AnimalTypeId = new Guid("64d6b2f4-77a3-46d8-91be-fc36ab0103b9"),
+                            Id = 1,
+                            AnimalTypeId = 2,
                             GenderId = 1,
                             IsActive = true,
                             Name = "Cabezon",
-                            ReportDate = new DateTime(2024, 12, 20, 1, 4, 45, 635, DateTimeKind.Local).AddTicks(8336)
+                            ReportDate = new DateTime(2025, 1, 21, 18, 20, 14, 542, DateTimeKind.Local).AddTicks(6592)
                         },
                         new
                         {
-                            Id = new Guid("dfae5930-af55-4aa3-8c11-f141fd75ce69"),
-                            AnimalTypeId = new Guid("64d6b2f4-77a3-46d8-91be-fc36ab0103b9"),
+                            Id = 2,
+                            AnimalTypeId = 1,
                             GenderId = 2,
                             IsActive = true,
                             Name = "Cabezona",
-                            ReportDate = new DateTime(2024, 12, 20, 1, 4, 45, 635, DateTimeKind.Local).AddTicks(8399)
+                            ReportDate = new DateTime(2025, 1, 21, 18, 20, 14, 542, DateTimeKind.Local).AddTicks(6674)
                         },
                         new
                         {
-                            Id = new Guid("22e71034-37e2-44ad-b31e-928b1f431d45"),
-                            AnimalTypeId = new Guid("64d6b2f4-77a3-46d8-91be-fc36ab0103b9"),
+                            Id = 3,
+                            AnimalTypeId = 1,
                             GenderId = 1,
                             IsActive = true,
                             Name = "Lucky",
-                            ReportDate = new DateTime(2024, 12, 20, 1, 4, 45, 635, DateTimeKind.Local).AddTicks(8402)
+                            ReportDate = new DateTime(2025, 1, 21, 18, 20, 14, 542, DateTimeKind.Local).AddTicks(6677)
                         },
                         new
                         {
-                            Id = new Guid("8b06fc47-666f-4685-8ec0-d5793b9be883"),
-                            AnimalTypeId = new Guid("e1f95dcb-0103-47f6-9ddb-dad7dae65365"),
+                            Id = 4,
+                            AnimalTypeId = 2,
                             GenderId = 1,
                             IsActive = true,
                             Name = "",
-                            ReportDate = new DateTime(2024, 12, 20, 1, 4, 45, 635, DateTimeKind.Local).AddTicks(8405)
+                            ReportDate = new DateTime(2025, 1, 21, 18, 20, 14, 542, DateTimeKind.Local).AddTicks(6681)
                         });
                 });
 

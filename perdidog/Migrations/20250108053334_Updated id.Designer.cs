@@ -12,8 +12,8 @@ using perdidog.Data;
 namespace perdidog.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20241118101051_Added Gender model")]
-    partial class AddedGendermodel
+    [Migration("20250108053334_Updated id")]
+    partial class Updatedid
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,11 +27,13 @@ namespace perdidog.Migrations
 
             modelBuilder.Entity("perdidog.Models.Domain.AnimalType", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
 
-                    b.Property<string>("AnimalName")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -42,18 +44,18 @@ namespace perdidog.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("e1f95dcb-0103-47f6-9ddb-dad7dae65365"),
-                            AnimalName = "Cat"
+                            Id = 1,
+                            Name = "Cat"
                         },
                         new
                         {
-                            Id = new Guid("64d6b2f4-77a3-46d8-91be-fc36ab0103b9"),
-                            AnimalName = "Dog"
+                            Id = 2,
+                            Name = "Dog"
                         },
                         new
                         {
-                            Id = new Guid("b8851d86-8193-48a5-9561-458b82b16f1e"),
-                            AnimalName = "Snake"
+                            Id = 3,
+                            Name = "Snake"
                         });
                 });
 
@@ -86,14 +88,45 @@ namespace perdidog.Migrations
                         });
                 });
 
-            modelBuilder.Entity("perdidog.Models.Domain.LostPet", b =>
+            modelBuilder.Entity("perdidog.Models.Domain.Image", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("AnimalTypeId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("FileDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileExtension")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FilePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("FileSizeInBytes")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Images");
+                });
+
+            modelBuilder.Entity("perdidog.Models.Domain.LostPet", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AnimalTypeId")
+                        .HasColumnType("int");
 
                     b.Property<int>("GenderId")
                         .HasColumnType("int");
@@ -114,6 +147,44 @@ namespace perdidog.Migrations
                     b.HasIndex("GenderId");
 
                     b.ToTable("LostPet");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AnimalTypeId = 2,
+                            GenderId = 1,
+                            IsActive = true,
+                            Name = "Cabezon",
+                            ReportDate = new DateTime(2025, 1, 8, 2, 33, 34, 149, DateTimeKind.Local).AddTicks(2783)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AnimalTypeId = 1,
+                            GenderId = 2,
+                            IsActive = true,
+                            Name = "Cabezona",
+                            ReportDate = new DateTime(2025, 1, 8, 2, 33, 34, 149, DateTimeKind.Local).AddTicks(2842)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AnimalTypeId = 1,
+                            GenderId = 1,
+                            IsActive = true,
+                            Name = "Lucky",
+                            ReportDate = new DateTime(2025, 1, 8, 2, 33, 34, 149, DateTimeKind.Local).AddTicks(2846)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AnimalTypeId = 2,
+                            GenderId = 1,
+                            IsActive = true,
+                            Name = "",
+                            ReportDate = new DateTime(2025, 1, 8, 2, 33, 34, 149, DateTimeKind.Local).AddTicks(2848)
+                        });
                 });
 
             modelBuilder.Entity("perdidog.Models.Domain.LostPet", b =>
