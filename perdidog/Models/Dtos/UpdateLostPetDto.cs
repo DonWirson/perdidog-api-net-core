@@ -12,8 +12,12 @@ namespace perdidog.Dtos
         [MaxLength(50, ErrorMessage = "Name must be at most 50 characters")]
         public string? Name { get; set; }
         public bool IsActive { get; set; }
+        public string? Description { get; set; }
+        public string? ImageUrl { get; set; }
+        public string? DistinctFeature { get; set; }
+        public int? PhoneNumberInscribed { get; set; }
         [Required]
-        public Guid AnimalTypeId { get; set; }
+        public int AnimalTypeId { get; set; }
         [Required]
         public int GenderId { get; set; }
 
