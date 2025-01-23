@@ -11,9 +11,9 @@ namespace perdidog.Interfaces
     public interface IAnimalTypeRepository
     {
         public Task<List<AnimalType>> GetAllAsync(QueryObjectAnimalType queryObject);
-        public Task<AnimalType?> GetOneAsync(Guid Id);
+        public Task<AnimalType?> GetOneAsync(int Id);
         public Task<AnimalType> CreateAsync(AnimalType animalType);
-        public Task<AnimalType?> UpdateAsync(Guid Id, UpdateAnimalTypeDto updateAnimalTypeDto);
-        public Task<AnimalType?> DeleteAsync(Guid Id);
+        public Task<AnimalType?> UpdateAsync(int Id, UpdateAnimalTypeDto updateAnimalTypeDto);
+        public Task<AnimalType?> DeleteAsync(int Id);
     }
 }

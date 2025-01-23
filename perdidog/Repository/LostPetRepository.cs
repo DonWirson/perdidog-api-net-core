@@ -57,7 +57,7 @@ namespace perdidog.Repository
             return await lostPets.Skip(skipResults).Take(queryObject.PageSize).ToListAsync();
         }
 
-        public async Task<LostPet?> GetOneAsync(Guid id)
+        public async Task<LostPet?> GetOneAsync(int id)
         {
             return await _context.LostPet.Include("AnimalType").Include("Gender").FirstOrDefaultAsync(x => x.Id == id);
         }
@@ -70,7 +70,7 @@ namespace perdidog.Repository
             return lostPet;
 
         }
-        public async Task<LostPet?> UpdateAsync(Guid id, UpdateLostPetDto updateLostPetDto)
+        public async Task<LostPet?> UpdateAsync(int id, UpdateLostPetDto updateLostPetDto)
         {
             var lostPetModel = _context.LostPet.FirstOrDefault(x => x.Id == id);
             if (lostPetModel == null)
@@ -82,13 +82,16 @@ namespace perdidog.Repository
             lostPetModel.IsActive = updateLostPetDto.IsActive;
             lostPetModel.GenderId = updateLostPetDto.GenderId;
             lostPetModel.AnimalTypeId = updateLostPetDto.AnimalTypeId;
+            lostPetModel.Description = updateLostPetDto.Description;
+            lostPetModel.DistinctFeature = updateLostPetDto?.DistinctFeature;
+
 
             await _context.SaveChangesAsync();
 
             return lostPetModel;
 
         }
-        public async Task<LostPet?> DeleteAsync(Guid id)
+        public async Task<LostPet?> DeleteAsync(int id)
         {
             var lostPet = _context.LostPet.FirstOrDefault(x => x.Id == id);
             if (lostPet == null)
@@ -97,8 +100,8 @@ namespace perdidog.Repository
             }
             _context.LostPet.Remove(lostPet);
             await _context.SaveChangesAsync();
-            return lostPet;
 
+            return lostPet;
         }
 
 

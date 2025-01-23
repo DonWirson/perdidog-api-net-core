@@ -41,7 +41,7 @@ namespace perdidog.Repository
 
             return await animalTypes.Skip(skipResults).Take(queryObject.PageSize).ToListAsync();
         }
-        public async Task<AnimalType?> GetOneAsync(Guid Id)
+        public async Task<AnimalType?> GetOneAsync(int Id)
         {
             var animalType = await this.dbContext.AnimalTypes.FirstOrDefaultAsync(x => x.Id == Id);
             return animalType;
@@ -54,7 +54,7 @@ namespace perdidog.Repository
             return animalType;
         }
 
-        public async Task<AnimalType?> DeleteAsync(Guid Id)
+        public async Task<AnimalType?> DeleteAsync(int Id)
         {
             var animalType = this.dbContext.AnimalTypes.FirstOrDefault(x => x.Id == Id);
             if (animalType == null)
@@ -67,7 +67,7 @@ namespace perdidog.Repository
             return animalType;
         }
 
-        public async Task<AnimalType?> UpdateAsync(Guid Id, UpdateAnimalTypeDto updateAnimalTypeDto)
+        public async Task<AnimalType?> UpdateAsync(int Id, UpdateAnimalTypeDto updateAnimalTypeDto)
         {
             var animalType = this.dbContext.AnimalTypes.FirstOrDefault(x => x.Id == Id);
             if (animalType == null)
