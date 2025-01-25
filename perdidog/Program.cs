@@ -8,6 +8,7 @@ using perdidog.Data;
 using perdidog.Interfaces;
 using perdidog.Mappers;
 using perdidog.Repository;
+using Serilog;
 using System.Security.Cryptography.Xml;
 using System.Text;
 
@@ -15,6 +16,18 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+//Logger
+var serilog = new LoggerConfiguration()
+    .WriteTo.Console()
+    .MinimumLevel.Information()
+    .CreateLogger();
+
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(serilog);
+
+
+
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
