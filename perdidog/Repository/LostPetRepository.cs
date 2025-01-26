@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using perdidog.Data;
 using perdidog.Dtos;
 using perdidog.Helpers;
 using perdidog.Interfaces;
-using perdidog.Mappers;
 using perdidog.Models.Domain;
 
 namespace perdidog.Repository
@@ -79,11 +74,13 @@ namespace perdidog.Repository
             }
 
             lostPetModel.Name = updateLostPetDto.Name;
-            lostPetModel.IsActive = updateLostPetDto.IsActive;
-            lostPetModel.GenderId = updateLostPetDto.GenderId;
-            lostPetModel.AnimalTypeId = updateLostPetDto.AnimalTypeId;
             lostPetModel.Description = updateLostPetDto.Description;
+            lostPetModel.ImageUrl = updateLostPetDto?.ImageUrl;
             lostPetModel.DistinctFeature = updateLostPetDto?.DistinctFeature;
+            lostPetModel.PhoneNumberInscribed = updateLostPetDto?.PhoneNumberInscribed;
+            lostPetModel.IsActive = updateLostPetDto.IsActive;
+            lostPetModel.AnimalTypeId = updateLostPetDto.AnimalTypeId;
+            lostPetModel.GenderId = updateLostPetDto.GenderId;
 
 
             await _context.SaveChangesAsync();
