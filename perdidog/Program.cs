@@ -9,6 +9,7 @@ using perdidog.Mappers;
 using perdidog.Middlewares;
 using perdidog.Repository;
 using Serilog;
+using System.Globalization;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -96,6 +97,9 @@ builder.Services.AddDbContext<ApplicationDbContextAuth>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("AuthenticationConnection"));
 });
+var cultureInfo = new CultureInfo("es-ES");
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
 //Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

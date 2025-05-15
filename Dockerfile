@@ -16,6 +16,8 @@ FROM build AS publish
 RUN dotnet publish perdidog.csproj -c Release -o /app/publish
 
 FROM  mcr.microsoft.com/dotnet/aspnet:8.0-alpine
+
+RUN apk add icu-libs
 EXPOSE 8080
 WORKDIR /app
 RUN mkdir publish
