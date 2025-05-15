@@ -117,8 +117,20 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         }
     );
 
+
 var app = builder.Build();
 
+//Migrations on startup
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDBContext>();
+    dbContext.Database.Migrate(); // This applies any pending migrations to perdidog
+}
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContextAuth>();
+    dbContext.Database.Migrate(); // This applies any pending migrations to perdidogAuth
+}
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
